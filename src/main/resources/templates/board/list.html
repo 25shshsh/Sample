@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace ="~{/layout/basic :: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
+
+        <!-- span태그 register 버튼입니다.-->
+        <h1 class="mt-4">샘플 게시판
+            <span>
+                <a th:href="@{/board/register}">
+                    <button type="button" class="btn btn-outline-primary">게시글 등록하기</button>
+                </a>
+            </span>
+        </h1>
+        <!-- register 버튼 추가 끝 -->
+
+        <!-- 검색타입과 키워드, 검색버튼 추가 // 검색 옵션 설정 기능입니다. 209p-->
+        <form action="/board/list" method="get" id="searchForm">
+            <div class="input-group">
+                <input type="hidden" name="page" value = "1">
+                <div class="input-group-prepend">
+                    <select class="custom-select" name="type">
+                        <option th:selected="${pageRequestDTO.type == null}">-------</option>
+                        <option value="t" th:selected="${pageRequestDTO.type =='t'}" >제목</option>
+                        <option value="c" th:selected="${pageRequestDTO.type =='c'}"  >내용</option>
+                        <option value="w"  th:selected="${pageRequestDTO.type =='w'}" >작성자</option>
+                        <option value="tc"  th:selected="${pageRequestDTO.type =='tc'}" >제목 + 내용</option>
+                        <option value="tcw"  th:selected="${pageRequestDTO.type =='tcw'}" >제목 + 내용 + 작성자</option>
+                    </select>
+                </div>
+                <input class="form-control" name="keyword" th:value="${pageRequestDTO.keyword}"> <!--input태그, 입력 칸-->
+                <div class="input-group-append" id="button-addon4">
+                    <!-- 검색버튼 그리고 클리어버튼 210p -->
+                    <button class="btn btn-outline-secondary btn-search" type="button">Search</button>
+                    <button class="btn btn-outline-secondary btn-clear" type="button">Clear</button>
+                </div>
+            </div>
+        </form>
+        <!-- 검색타입과 키워드, 검색버튼 추가 끝-->
+
+        <!--리스트 헤드 칸 입니다.-->
+        <table class="table table-striped">
+
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Writer</th>
+                <th scope="col">Regdate</th>
+            </tr>
+            </thead>
+        <!--리스트 헤드 끝-->
+
+            <tbody>
+            <tr th:each="dto : ${result.dtoList}" >
+                <th scope="row"> <!-- a태그안에 기존 dto.bno 넣고 각 글 번호에 링크처리 구현 (클릭 시 새 페이지로 이동되게) -->
+                    <a th:href="@{/board/read(bno = ${dto.bno},
+                    page = ${result.page},
+                    type = ${pageRequestDTO.type},
+                    keyword = ${pageRequestDTO.keyword})}">
+                        [[${dto.bno}]]
+                    </a>
+                </th>
+
+                <td>[[${dto.title}]]</td>
+                <td>[[${dto.writer.email}]]</td>
+                <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--페이지선택 추가 바-->
+        <ul class="pagination h-100 justify-content-center align-items-center">
+
+            <li class="page-item" th:if="${result.prev}">
+                <a class="page-link" th:href="@{/board/list(page= ${result.start -1},
+                type=${pageRequestDTO.type},
+                keyword = ${pageRequestDTO.keyword}
+                )}" tabindex="-1">Previous</a>
+            </li>
+
+            <li th:class=" 'page=item' + ${result.page == page?'active':''}"
+                th:each="page: ${result.pageList}">
+                <a class="page-link" th:href="@{/board/list(page= ${page},
+                type=${pageRequestDTO.type},
+                keyword = ${pageRequestDTO.keyword}
+                )}">
+                    [[${page}]]
+                </a>
+            </li>
+
+            <li class="page-item" th:if="${result.next}">
+                <a class="page-link" th:href="@{/board/list(page= ${result.end + 1},
+                type=${pageRequestDTO.type},
+                keyword = ${pageRequestDTO.keyword}
+                )}">Next</a>
+            </li>
+
+        </ul> <!-- 태그 끝 -->
+
+        <!-- modal title  모달창 (안내창!)-->
+        <!-- https://getbootstrap.com/docs/4.2/components/modal/ -->
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 등록 처리와 목록 페이지의 모달창 (등록 삭제 시 안내창이 뜬다.)-->
+        <script th:inline="javascript">
+
+            var msg = [[${msg}]];
+
+            console.log(msg);
+
+            if(msg) {
+                $(".modal").modal();
+            }
+            <!-- Search버튼과 Clear버튼 이벤트 처리-->
+            var searchForm = $("#searchForm");
+
+            $('.btn-search').click(function(e){
+                searchForm.submit();
+            });
+
+            $('.btn-clear').click(function(e){
+                searchForm.empty().submit();
+            });
+        </script>
+
+
+
+
+    </th:block>
+
+</th:block>

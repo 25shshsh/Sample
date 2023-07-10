@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmln="https://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인해야 확인가능</title>
+</head>
+<body>
+    <div>
+        <h1>로그인해야 확인가능</h1>
+        <!-- sec:authorize : authorization(인가) 관련 정보를 꺼내거나 제어가능-->
+        <!-- 각 권한이 있다면? 가지고 있는 롤 텍스트 출력-->
+        <div sec:authorize="hasRole('USER')">Has USER ROLE (기본권한)</div>
+        <div sec:authorize="hasRole('MANAGER')">Has MANAGER ROLE (회원권한)</div>
+        <div sec:authorize="hasRole('ADMIN')">Has ADMIN ROLE (관리자권한)</div>
+
+        <div sec:authorize="isAuthenticated()">
+            인증된 사람만 읽을 수 있다. (최소 회원권한)
+        </div>
+
+        <!-- authentication(인증)의 principal 이라는 변수로 ClubAuthMemberDTO의 내용을 이용할 수 있음.-->
+
+        <!--<div sec:authentication="principal"></div>--> <!--dto통일시키기 전 소셜로그인 정보보려면 포괄적으로 봐야했었다. -->
+
+
+        <!-- DTO틀과 통일시켜야 외부값도 특정 속성만 뽑아서 볼 수있음-->
+        Authenticated username:
+        <div sec:authentication="principal.username"></div>
+        <div sec:authentication="principal.name"></div>
+        <!--user97@sh.sh-->
+        <!--sh97-->
+
+        Authenticated user roles:
+        <div sec:authentication="principal.authorities"></div>
+        <!--[ROLE_ADMIN, ROLE_MANAGER, ROLE_USER]-->
+
+
+
+    </div>
+</body>
+</html>
