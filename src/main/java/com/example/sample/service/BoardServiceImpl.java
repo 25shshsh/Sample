@@ -5,7 +5,7 @@ import com.example.sample.dto.PageRequestDTO;
 import com.example.sample.dto.PageResultDTO;
 import com.example.sample.entity.Board;
 import com.example.sample.entity.QBoard;
-import com.example.sample.security.dto.repository.BoardRepository;
+import com.example.sample.repository.BoardRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;

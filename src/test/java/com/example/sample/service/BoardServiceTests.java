@@ -4,7 +4,7 @@ import com.example.sample.dto.BoardDTO;
 import com.example.sample.dto.PageRequestDTO;
 import com.example.sample.dto.PageResultDTO;
 import com.example.sample.entity.Board;
-import com.example.sample.security.dto.repository.ClubMemberRepository;
+import com.example.sample.repository.ClubMemberRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

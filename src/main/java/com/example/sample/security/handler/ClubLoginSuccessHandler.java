@@ -17,7 +17,7 @@ public class ClubLoginSuccessHandler implements AuthenticationSuccessHandler {
                                         HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         log.info("--------------------------------");
-        log.info("onAuthenticationSuccess"); // 로그인 성공 메시지만 장착..
+        log.info("onAuthenticationSuccess"); // 로그인 성공 로그
 
     }
 

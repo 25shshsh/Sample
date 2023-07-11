@@ -2,8 +2,6 @@ package com.example.sample.repository;
 
 import com.example.sample.entity.Board;
 import com.example.sample.entity.QBoard;
-import com.example.sample.security.dto.repository.BoardRepository;
-import com.example.sample.security.dto.repository.ClubMemberRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import org.junit.jupiter.api.DisplayName;

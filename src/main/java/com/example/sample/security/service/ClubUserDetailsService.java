@@ -1,7 +1,7 @@
 package com.example.sample.security.service;
 
 import com.example.sample.entity.ClubMember;
-import com.example.sample.security.dto.repository.ClubMemberRepository;
+import com.example.sample.repository.ClubMemberRepository;
 import com.example.sample.security.dto.ClubAuthMemberDTO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;

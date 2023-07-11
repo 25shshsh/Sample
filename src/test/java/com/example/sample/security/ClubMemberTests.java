@@ -2,7 +2,7 @@ package com.example.sample.security;
 
 import com.example.sample.entity.ClubMember;
 import com.example.sample.entity.ClubMemberRole;
-import com.example.sample.security.dto.repository.ClubMemberRepository;
+import com.example.sample.repository.ClubMemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

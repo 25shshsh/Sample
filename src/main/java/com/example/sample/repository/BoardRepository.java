@@ -1,4 +1,4 @@
-package com.example.sample.security.dto.repository;
+package com.example.sample.repository;
 
 import com.example.sample.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
