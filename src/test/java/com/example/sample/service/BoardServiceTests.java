@@ -30,7 +30,7 @@ public class BoardServiceTests {
     @Transactional
     @DisplayName("dtoToEntity register")
     public void testRegister() {
-        // service.register는 ServiceImpl에 구현 + dtoToEntity기능이 내용적 결합 ^^
+        // service.register는 ServiceImpl에 구현 + dtoToEntity
         BoardDTO boardDTO = BoardDTO.builder()
                 .title("Sample Title")
                 .content("Sample Content")

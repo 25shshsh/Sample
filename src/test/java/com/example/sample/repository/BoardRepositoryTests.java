@@ -34,11 +34,11 @@ public class BoardRepositoryTests {
     @DisplayName("더미게시글 300개")
     public void insertDummies() {
 
-        IntStream.rangeClosed(1,300).forEach(i -> {
+        IntStream.rangeClosed(1,1000000).forEach(i -> {
 
             Board board = Board.builder()
-                    .title("Title..." + i)
-                    .content("content..." + i)
+                    .title("Title..." + i%5000)
+                    .content("content..." + i%5000)
                     .writer(clubMemberRepository.getReferenceById("user94@sh.sh"))
                     .build();
             System.out.println(boardRepository.save(board));
