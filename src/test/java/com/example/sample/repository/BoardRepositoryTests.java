@@ -29,15 +29,15 @@ public class BoardRepositoryTests {
     }
 
     @Test
-    @DisplayName("더미게시글 300개")
+    @DisplayName("더미게시글 500개")
     public void insertDummies() {
 
-        IntStream.rangeClosed(1,1000000).forEach(i -> {
+        IntStream.rangeClosed(1,500).forEach(i -> {
 
             Board board = Board.builder()
-                    .title("Title..." + i%5000)
-                    .content("content..." + i%5000)
-                    .writer(clubMemberRepository.getReferenceById("user94@sh.sh"))
+                    .title("Title..." + i)
+                    .content("content..." + i)
+                    .writer(clubMemberRepository.getReferenceById("user"+(int)(Math.random() * 100) + 1+"@sh.sh"))
                     .build();
             System.out.println(boardRepository.save(board));
 

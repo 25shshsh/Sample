@@ -34,7 +34,7 @@ public class BoardServiceImpl implements BoardService{
 
 
         log.info("dtoToEntity-----------");
-        Board entity = dtoToEntity(dto); // 내용적 결합도 아닌가..
+        Board entity = dtoToEntity(dto);
         log.info(entity);
 
         boardRepository.save(entity);
