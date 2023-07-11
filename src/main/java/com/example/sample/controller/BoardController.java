@@ -83,7 +83,7 @@ public class BoardController {
 
         service.modify(dto); // 값은 수정된 값을 entity에 저장할 것임.
 
-        // 수정 후에는 기존의 페이지 정보는 그대로 남게끔 검색키워드 type, keyword 파라미터도 추가 218p
+        // 수정 후에는 기존의 페이지 정보는 그대로 남게끔 검색키워드 type, keyword 파라미터도 추가
         redirectAttributes.addAttribute("page", requestDTO.getPage());
         redirectAttributes.addAttribute("type", requestDTO.getType());
         redirectAttributes.addAttribute("keyword", requestDTO.getKeyword());
