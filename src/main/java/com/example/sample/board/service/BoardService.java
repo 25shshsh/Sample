@@ -6,6 +6,7 @@ import com.example.sample.board.dto.PageResultDTO;
 import com.example.sample.board.entity.Board;
 
 
+
 public interface BoardService {
 
 

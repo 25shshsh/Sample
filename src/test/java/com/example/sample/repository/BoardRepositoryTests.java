@@ -1,11 +1,10 @@
 package com.example.sample.repository;
 
-import com.example.sample.board.dto.BoardDTO;
-import com.example.sample.board.entity.QBoard;
-import com.example.sample.board.repository.BoardRepository;
-import com.example.sample.member.repository.ClubMemberRepository;
-import com.example.sample.board.entity.Board;
-import com.example.sample.board.service.BoardMapper;
+import com.example.sample.dto.BoardDTO;
+import com.example.sample.entity.Board;
+import com.example.sample.entity.QBoard;
+import com.example.sample.service.BoardMapper;
+import com.example.sample.service.BoardService;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import jakarta.transaction.Transactional;
@@ -160,11 +159,11 @@ public class BoardRepositoryTests {
                 .orElseThrow( () -> new IllegalArgumentException("") ); // entity
 
         System.out.println(board.getRegDate());
-        BoardDTO boardDTO = BoardMapper.INSTANCE.entityToDto(board);
+        BoardDTO boardDTO = BoardMapper.INSTANCE.entityToDto2(board);
 
         System.out.println(boardDTO); // dto
 
-        Board board2 = BoardMapper.INSTANCE.dtoToEntity(boardDTO);
+        Board board2 = BoardMapper.INSTANCE.dtoToEntity2(boardDTO);
 
         System.out.println(board2); // entity, 저장전이라 regdate, moddate 정보없음
 
