@@ -75,7 +75,7 @@ public class BoardServiceImpl implements BoardService{
 
         Pageable pageable = requestDTO.getPageable(Sort.by("boardNo").descending());
 
-        BooleanBuilder booleanBuilder = getSearch(requestDTO); // 검색조건을 어떻게 처리할 것인지
+        BooleanBuilder booleanBuilder = buildSearchCondition(requestDTO); // 검색조건을 어떻게 처리할 것인지
 
         Page<Board> result = boardRepository.findAll(booleanBuilder, pageable); // Querydsl 사용
 
@@ -84,7 +84,7 @@ public class BoardServiceImpl implements BoardService{
         return new PageResultDTO<>(result, fn);
     }
 
-    private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
+    private BooleanBuilder buildSearchCondition(PageRequestDTO requestDTO) {
 
         String type = requestDTO.getType();
 

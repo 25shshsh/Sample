@@ -3,6 +3,8 @@ package com.example.sample.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Builder
@@ -18,11 +20,22 @@ public class Board extends BaseEntity{
     @Column(length = 100, nullable = false)
     private String title;
 
+
     @Column(length = 1500, nullable = false)
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private ClubMember writer;
+
+    @Override
+    public LocalDateTime getModDate() {
+        return super.getModDate();
+    }
+
+    @Override
+    public LocalDateTime getRegDate() {
+        return super.getRegDate();
+    }
 
     public void changeTitle(String title) {
         this.title=title;

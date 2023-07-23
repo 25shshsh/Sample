@@ -1,9 +1,13 @@
 package com.example.sample.repository;
 
+import com.example.sample.dto.BoardDTO;
 import com.example.sample.entity.Board;
 import com.example.sample.entity.QBoard;
+import com.example.sample.service.BoardMapper;
+import com.example.sample.service.BoardService;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +25,14 @@ public class BoardRepositoryTests {
 
     private final BoardRepository boardRepository;
     private final ClubMemberRepository clubMemberRepository;
+    private final BoardMapper boardMapper;
 
     @Autowired
-    public BoardRepositoryTests(BoardRepository boardRepository, ClubMemberRepository clubMemberRepository) {
+    public BoardRepositoryTests(BoardRepository boardRepository, ClubMemberRepository clubMemberRepository,
+                                BoardMapper boardMapper) {
         this.boardRepository = boardRepository;
         this.clubMemberRepository = clubMemberRepository;
+        this.boardMapper = boardMapper;
     }
 
     @Test
@@ -138,10 +145,29 @@ public class BoardRepositoryTests {
         builder.and(qboard.boardNo.gt(0L)); // gt, lt, goe, loe // >, <, >=, <=
 
         Page<Board> result = boardRepository.findAll(builder, pageable);
-        result.stream().forEach(guestbook -> {
-            System.out.println(guestbook);
+        result.stream().forEach(board -> {
+            System.out.println(board);
         });
 
     }
+
+    @Test
+    @Transactional
+    @DisplayName("MapStruct 라이브러리 테스트")
+    void testMapStruct() {
+        Board board = boardRepository.findById(999L)
+                .orElseThrow( () -> new IllegalArgumentException("") ); // entity
+
+        System.out.println(board.getRegDate());
+        BoardDTO boardDTO = BoardMapper.INSTANCE.entityToDto2(board);
+
+        System.out.println(boardDTO); // dto
+
+        Board board2 = BoardMapper.INSTANCE.dtoToEntity2(boardDTO);
+
+        System.out.println(board2); // entity, 저장전이라 regdate, moddate 정보없음
+
+    }
+
 
 }
