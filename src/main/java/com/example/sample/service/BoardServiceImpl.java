@@ -40,24 +40,24 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.save(entity);
 
 
-        return entity.getBno();
+        return entity.getBoardNo();
     }
 
     @Override
-    public BoardDTO read(Long bno) {
-        Optional<Board> result = boardRepository.findById(bno);
+    public BoardDTO read(Long boardNo) {
+        Optional<Board> result = boardRepository.findById(boardNo);
 
         return result.isPresent()? entityToDto(result.get()): null;
     }
 
     @Override
-    public void remove(Long bno) {
-        boardRepository.deleteById(bno);
+    public void remove(Long boardNo) {
+        boardRepository.deleteById(boardNo);
     }
 
     @Override
     public void modify(BoardDTO dto) { // 업데이트하는 항목은 제목, 내용
-        Optional<Board> result = boardRepository.findById(dto.getBno());
+        Optional<Board> result = boardRepository.findById(dto.getBoardNo());
 
         if(result.isPresent()){
             Board entity = result.get();
@@ -73,7 +73,7 @@ public class BoardServiceImpl implements BoardService{
     @Override // 164p
     public PageResultDTO<BoardDTO, Board> getList(PageRequestDTO requestDTO) {
 
-        Pageable pageable = requestDTO.getPageable(Sort.by("bno").descending());
+        Pageable pageable = requestDTO.getPageable(Sort.by("boardNo").descending());
 
         BooleanBuilder booleanBuilder = getSearch(requestDTO); // 검색조건을 어떻게 처리할 것인지
 
@@ -94,7 +94,7 @@ public class BoardServiceImpl implements BoardService{
 
         String keyword = requestDTO.getKeyword();
 
-        BooleanExpression expression = qBoard.bno.gt(0L); // bno > 0 조건만 생성
+        BooleanExpression expression = qBoard.boardNo.gt(0L); // boardNo > 0 조건만 생성
 
         booleanBuilder.and(expression);
 

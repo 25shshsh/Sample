@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data // getter,setter 자유롭게 값을 변경가능.
 public class BoardDTO {
-    private Long bno;
+    private Long boardNo;
     private String title;
     private String content;
     private ClubMember writer;

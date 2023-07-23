@@ -44,31 +44,31 @@ public class BoardController {
         log.info("dto..." + dto);
 
         // 새로 추가된 엔티티의 번호
-        Long bno = service.register(dto);
-        redirectAttributes.addFlashAttribute("msg", bno);
+        Long boardNo = service.register(dto);
+        redirectAttributes.addFlashAttribute("msg", boardNo);
         return "redirect:/board/list"; // post + redirect
 
     }
 
     @GetMapping({"/read", "/modify"})
-    public void read(long bno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
+    public void read(long boardNo, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         // @ModelAttribute("requestDTO") 는 키,밸류형태에서 키 이름 지정..
-        log.info("bno : " + bno);
+        log.info("boardNo : " + boardNo);
 
-        BoardDTO dto = service.read(bno); // entity의 bno로 entity를 꺼내서 dto로 바꾼것을 dto에 담아준다.
+        BoardDTO dto = service.read(boardNo); // entity의 boardNo로 entity를 꺼내서 dto로 바꾼것을 dto에 담아준다.
 
         model.addAttribute("dto", dto); // entity -> dto가 된 것을 모델에 담아서 전송!
 
     }
 
     @PostMapping("/remove")
-    public String remove(long bno, RedirectAttributes redirectAttributes) {
+    public String remove(long boardNo, RedirectAttributes redirectAttributes) {
 
-        log.info("bno : " + bno);
+        log.info("boardNo : " + boardNo);
 
-        service.remove(bno);
+        service.remove(boardNo);
 
-        redirectAttributes.addFlashAttribute("msg", bno);
+        redirectAttributes.addFlashAttribute("msg", boardNo);
 
         return "redirect:/board/list"; // 삭제 후 목록의 첫 페이지로 가는 것이 보편적이다.
 
@@ -87,7 +87,7 @@ public class BoardController {
         redirectAttributes.addAttribute("page", requestDTO.getPage());
         redirectAttributes.addAttribute("type", requestDTO.getType());
         redirectAttributes.addAttribute("keyword", requestDTO.getKeyword());
-        redirectAttributes.addAttribute("bno", dto.getBno());
+        redirectAttributes.addAttribute("boardNo", dto.getBoardNo());
 
         return "redirect:/board/read";
     }
