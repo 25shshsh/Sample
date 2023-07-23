@@ -1,11 +1,11 @@
-package com.example.sample.board.service;
+package com.example.sample.service;
 
-import com.example.sample.board.dto.BoardDTO;
-import com.example.sample.board.dto.PageRequestDTO;
-import com.example.sample.board.dto.PageResultDTO;
-import com.example.sample.board.entity.Board;
-import com.example.sample.board.entity.QBoard;
-import com.example.sample.board.repository.BoardRepository;
+import com.example.sample.dto.BoardDTO;
+import com.example.sample.dto.PageRequestDTO;
+import com.example.sample.dto.PageResultDTO;
+import com.example.sample.entity.Board;
+import com.example.sample.entity.QBoard;
+import com.example.sample.repository.BoardRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +24,7 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
 
-    private final BoardRepository boardRepository; // 생성자주입.
-    private final BoardMapper boardMapper;
+    private final BoardRepository boardRepository; // final 붙이면 생성될 때 한번만 호출된다. 호출되는 객체의 수정을 방지한다.
 
     @Override
     public Long register(BoardDTO dto) {
@@ -35,7 +34,7 @@ public class BoardServiceImpl implements BoardService{
 
 
         log.info("dtoToEntity-----------");
-        Board entity = boardMapper.INSTANCE.dtoToEntity(dto);
+        Board entity = dtoToEntity(dto);
         log.info(entity);
 
         boardRepository.save(entity);
@@ -46,15 +45,9 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public BoardDTO read(Long boardNo) {
+        Optional<Board> result = boardRepository.findById(boardNo);
 
-/*        Optional<Board> result = boardRepository.findById(boardNo);
-
-        return result.isPresent()? entityToDto(result.get()): null;*/
-
-        Board result = boardRepository.findById(boardNo)
-                .orElseThrow( () -> new IllegalArgumentException(""));
-
-        return boardMapper.INSTANCE.entityToDto(result);
+        return result.isPresent()? entityToDto(result.get()): null;
     }
 
     @Override
@@ -77,21 +70,21 @@ public class BoardServiceImpl implements BoardService{
         }
     }
 
-    @Override
+    @Override // 164p
     public PageResultDTO<BoardDTO, Board> getList(PageRequestDTO requestDTO) {
 
         Pageable pageable = requestDTO.getPageable(Sort.by("boardNo").descending());
 
-        BooleanBuilder booleanBuilder = buildSearchCondition(requestDTO); // 검색조건을 어떻게 처리할 것인지
+        BooleanBuilder booleanBuilder = getSearch(requestDTO); // 검색조건을 어떻게 처리할 것인지
 
         Page<Board> result = boardRepository.findAll(booleanBuilder, pageable); // Querydsl 사용
 
-        Function<Board, BoardDTO> fn = (entity -> boardMapper.INSTANCE.entityToDto(entity)); // static class에 Function정리함.
+        Function<Board, BoardDTO> fn = (entity -> entityToDto(entity)); // static class에 Function정리함.
 
         return new PageResultDTO<>(result, fn);
     }
 
-    private BooleanBuilder buildSearchCondition(PageRequestDTO requestDTO) {
+    private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
 
         String type = requestDTO.getType();
 
@@ -109,16 +102,16 @@ public class BoardServiceImpl implements BoardService{
             return booleanBuilder;
         }
 
-        // 검색 조건을 작성하기
+        // 검색 조건을 작성하기 (205p)
         BooleanBuilder conditionBuilder = new BooleanBuilder();
 
-        if(type.contains("title")){
+        if(type.contains("t")){
             conditionBuilder.or(qBoard.title.contains(keyword));
         }
-        if(type.contains("content")){
+        if(type.contains("c")){
             conditionBuilder.or(qBoard.content.contains(keyword));
         }
-        if(type.contains("writer")){
+        if(type.contains("w")){
             conditionBuilder.or(qBoard.writer.email.contains(keyword));
         }
         // 만약 list.html에서 tcw라면 제목,내용,작성자 모두 포함이지
