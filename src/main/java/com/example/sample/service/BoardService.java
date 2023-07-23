@@ -5,7 +5,9 @@ import com.example.sample.dto.PageRequestDTO;
 import com.example.sample.dto.PageResultDTO;
 import com.example.sample.entity.Board;
 
+
 public interface BoardService {
+
 
     Long register(BoardDTO dto);
 

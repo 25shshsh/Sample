@@ -18,7 +18,6 @@ public class BoardServiceTests {
     private final BoardService service;
     private final ClubMemberRepository clubMemberRepository;
 
-
     @Autowired
     public BoardServiceTests(BoardService service, ClubMemberRepository clubMemberRepository) {
         this.service = service;
@@ -87,4 +86,6 @@ public class BoardServiceTests {
         System.out.println("========================================");
         resultDTO.getPageList().forEach(i -> System.out.println(i));
     }
+
+
 }
