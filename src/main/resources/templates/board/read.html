@@ -8,7 +8,7 @@
 
         <div class="form-group">
             <label>Gno</label>
-            <input type="text" class="form-control" name="bno" th:value="${dto.bno}" readonly>
+            <input type="text" class="form-control" name="boardNo" th:value="${dto.boardNo}" readonly>
         </div>
 
         <div class="form-group">
@@ -37,7 +37,7 @@
 
         <!-- 현재 로그인 된 사용자와 게시글 작성자가 같을 경우에만 수정버튼이 보이게 -->
         <div th:if="${dto.writer.email == #authentication.principal.username}">
-        <a th:href="@{/board/modify(bno = ${dto.bno}, page=${requestDTO.page},
+        <a th:href="@{/board/modify(boardNo = ${dto.boardNo}, page=${requestDTO.page},
         type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
             <button type="button" class="btn btn-primary">Modify</button></a>
         </div>

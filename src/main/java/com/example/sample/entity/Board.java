@@ -13,7 +13,7 @@ public class Board extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bno;
+    private Long boardNo;
 
     @Column(length = 100, nullable = false)
     private String title;

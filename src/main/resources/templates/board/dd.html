@@ -52,12 +52,12 @@
 
             <tbody>
             <tr th:each="dto : ${result.dtolist}" >
-                <th scope="row"> <!-- a태그안에 기존 dto.bno 넣고 각 글 번호에 링크처리 구현 ( 클릭 시 들어갈 수 있게) -->
-                    <a th:href="@{/board/read(bno = ${dto.bno},
+                <th scope="row"> <!-- a태그안에 기존 dto.boardNo 넣고 각 글 번호에 링크처리 구현 ( 클릭 시 들어갈 수 있게) -->
+                    <a th:href="@{/board/read(boardNo = ${dto.boardNo},
                     page= ${result.page} ,
                     type=${pageRequestDTO.type} ,
                     keyword = ${pageRequestDTO.keyword})}">
-                        [[${dto.bno}]]
+                        [[${dto.boardNo}]]
                     </a>
                 </th>
                 <td>[[${dto.title}]]</td>
