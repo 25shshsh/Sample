@@ -1,6 +1,6 @@
-package com.example.sample.controller;
+package com.example.sample.board.controller;
 
-import com.example.sample.security.dto.ClubAuthMemberDTO;
+import com.example.sample.member.dto.ClubAuthMemberDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,7 +25,7 @@ public class SampleController {
         log.info("로그인을 하지 않아도 접근가능");
     }
 
-    @GetMapping("/member") // 522~523P
+    @GetMapping("/member")
     public void exMember(@AuthenticationPrincipal ClubAuthMemberDTO clubAuthMember){
         // ClubUserDetailsService의 loadUserByUsername() 쪽으로 받아와서 db랑 대조해보고 같다면 꺼내서 dto로 바꿔서 여기로
         log.info("member login..........");

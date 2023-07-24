@@ -1,5 +1,6 @@
-package com.example.sample.entity;
+package com.example.sample.member.entity;
 
+import com.example.sample.base_entity.BaseEntity;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @ToString
-public class ClubMember extends BaseEntity{
+public class ClubMember extends BaseEntity {
 
     @Id
     private String email;

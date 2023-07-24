@@ -1,4 +1,4 @@
-package com.example.sample.security.dto;
+package com.example.sample.member.dto;
 
 import lombok.Getter;
 import lombok.Setter;

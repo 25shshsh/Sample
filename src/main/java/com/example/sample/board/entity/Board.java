@@ -1,5 +1,7 @@
-package com.example.sample.entity;
+package com.example.sample.board.entity;
 
+import com.example.sample.base_entity.BaseEntity;
+import com.example.sample.member.entity.ClubMember;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "writer")
-public class Board extends BaseEntity{
+public class Board extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

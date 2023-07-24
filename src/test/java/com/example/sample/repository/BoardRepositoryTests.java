@@ -1,10 +1,11 @@
 package com.example.sample.repository;
 
-import com.example.sample.dto.BoardDTO;
-import com.example.sample.entity.Board;
+import com.example.sample.board.dto.BoardDTO;
+import com.example.sample.board.repository.BoardRepository;
+import com.example.sample.member.repository.ClubMemberRepository;
+import com.example.sample.board.entity.Board;
 import com.example.sample.entity.QBoard;
-import com.example.sample.service.BoardMapper;
-import com.example.sample.service.BoardService;
+import com.example.sample.board.service.BoardMapper;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import jakarta.transaction.Transactional;

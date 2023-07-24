@@ -1,4 +1,4 @@
-package com.example.sample.entity;
+package com.example.sample.member.entity;
 
 public enum ClubMemberRole {
     USER, MANAGER, ADMIN

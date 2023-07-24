@@ -1,6 +1,6 @@
-package com.example.sample.repository;
+package com.example.sample.member.repository;
 
-import com.example.sample.entity.ClubMember;
+import com.example.sample.member.entity.ClubMember;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

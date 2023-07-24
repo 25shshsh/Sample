@@ -1,4 +1,4 @@
-package com.example.sample.security.handler;
+package com.example.sample.member.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
