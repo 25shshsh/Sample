@@ -31,8 +31,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
         .requestMatchers("/sample/all").permitAll() // 모두 로그인 없이 접근가능 페이지
                 .requestMatchers("/sample/member").hasRole("USER") // USER라는 권한을 가져야 접근 가능한 페이지)
-                .requestMatchers("/com/example/sample/board/register").hasRole("USER")
-                .requestMatchers("/com/example/sample/board/modify").hasRole("USER")
+                .requestMatchers("/board/register").hasRole("USER")
+                .requestMatchers("/board/modify").hasRole("USER")
                 .anyRequest().permitAll()// 이외 페이지 모두 허가.
                 .and().formLogin()// 인가 / 인증 문제시 로그인 화면을 보여주는 기능 별도의 기능을 지정하려면?
                 .and().logout().logoutSuccessUrl("/");
