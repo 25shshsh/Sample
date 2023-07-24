@@ -1,7 +1,6 @@
-package com.example.sample.dto;
+package com.example.sample.board.dto;
 
-import com.example.sample.entity.Board;
-import com.example.sample.entity.ClubMember;
+import com.example.sample.member.entity.ClubMember;
 import lombok.*;
 
 import java.time.LocalDateTime;

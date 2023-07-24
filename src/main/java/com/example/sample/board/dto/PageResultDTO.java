@@ -1,4 +1,4 @@
-package com.example.sample.dto;
+package com.example.sample.board.dto;
 
 import lombok.Data;
 import org.springframework.data.domain.Page;

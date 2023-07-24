@@ -1,12 +1,11 @@
 package com.example.sample;
 
-import com.example.sample.dto.BoardDTO;
-import com.example.sample.entity.Board;
-import com.example.sample.entity.ClubMember;
-import com.example.sample.entity.ClubMemberRole;
-import com.example.sample.repository.ClubMemberRepository;
-import com.example.sample.service.BoardService;
-import org.junit.jupiter.api.DisplayName;
+import com.example.sample.board.dto.BoardDTO;
+import com.example.sample.board.entity.Board;
+import com.example.sample.member.entity.ClubMember;
+import com.example.sample.member.entity.ClubMemberRole;
+import com.example.sample.member.repository.ClubMemberRepository;
+import com.example.sample.board.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

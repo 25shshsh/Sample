@@ -1,8 +1,8 @@
-package com.example.sample.security.service;
+package com.example.sample.member.service;
 
-import com.example.sample.entity.ClubMember;
-import com.example.sample.repository.ClubMemberRepository;
-import com.example.sample.security.dto.ClubAuthMemberDTO;
+import com.example.sample.member.entity.ClubMember;
+import com.example.sample.member.repository.ClubMemberRepository;
+import com.example.sample.member.dto.ClubAuthMemberDTO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

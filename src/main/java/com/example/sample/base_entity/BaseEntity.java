@@ -1,4 +1,4 @@
-package com.example.sample.entity;
+package com.example.sample.base_entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(value = {AuditingEntityListener.class }) //Persistence Context에서 객체 변화 감지, GuestbookApplication 수정도 필요
 @Getter
-abstract class BaseEntity {
+public abstract class BaseEntity {
     // 변경되는 Entity 값으로 regDate와 modData에 적절한 값이 지정된다.
 
     @CreatedDate // Entity의 생성 시간을 처리

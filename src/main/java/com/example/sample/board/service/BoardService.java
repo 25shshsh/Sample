@@ -1,9 +1,9 @@
-package com.example.sample.service;
+package com.example.sample.board.service;
 
-import com.example.sample.dto.BoardDTO;
-import com.example.sample.dto.PageRequestDTO;
-import com.example.sample.dto.PageResultDTO;
-import com.example.sample.entity.Board;
+import com.example.sample.board.dto.BoardDTO;
+import com.example.sample.board.dto.PageRequestDTO;
+import com.example.sample.board.dto.PageResultDTO;
+import com.example.sample.board.entity.Board;
 
 
 public interface BoardService {

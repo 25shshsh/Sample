@@ -1,7 +1,7 @@
-package com.example.sample.controller;
+package com.example.sample.board.controller;
 
-import com.example.sample.dto.BoardDTO;
-import com.example.sample.service.BoardService;
+import com.example.sample.board.dto.BoardDTO;
+import com.example.sample.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.example.sample.dto.PageRequestDTO;
+import com.example.sample.board.dto.PageRequestDTO;
 
 @Controller
 @RequestMapping({"", "/", "/board", "/board/", "/logout"})
