@@ -4,7 +4,7 @@ import com.example.sample.board.dto.BoardDTO;
 import com.example.sample.board.dto.PageRequestDTO;
 import com.example.sample.board.dto.PageResultDTO;
 import com.example.sample.board.entity.Board;
-import com.example.sample.entity.QBoard;
+import com.example.sample.board.entity.QBoard;
 import com.example.sample.board.repository.BoardRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -102,7 +102,7 @@ public class BoardServiceImpl implements BoardService{
             return booleanBuilder;
         }
 
-        // 검색 조건을 작성하기 (205p)
+        // 검색 조건을 작성하기
         BooleanBuilder conditionBuilder = new BooleanBuilder();
 
         if(type.contains("t")){

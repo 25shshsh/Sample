@@ -7,7 +7,7 @@
         <h1 class="mt-4">샘플 게시판
             <!-- span태그 register 버튼 추가-->
             <span>
-                <a th:href="@{/com/example/sample/board/register}">
+                <a th:href="@{/board/register}">
                     <button type="button" class="btn btn-outline-primary">REGISTER
                     </button>
                 </a>
@@ -16,7 +16,7 @@
         <!-- register 버튼 추가 끝 -->
 
         <!-- 검색타입과 키워드, 검색버튼 추가-->
-        <form action="/com/example/sample/board/list" method="get" id="searchForm">
+        <form action="/board/list" method="get" id="searchForm">
             <div class="input-group">
                 <input type="hidden" name="page" value = "1">
                 <div class="input-group-prepend">
@@ -53,7 +53,7 @@
             <tbody>
             <tr th:each="dto : ${result.dtolist}" >
                 <th scope="row"> <!-- a태그안에 기존 dto.boardNo 넣고 각 글 번호에 링크처리 구현 ( 클릭 시 들어갈 수 있게) -->
-                    <a th:href="@{/com/example/sample/board/read(boardNo = ${dto.boardNo},
+                    <a th:href="@{/board/read(boardNo = ${dto.boardNo},
                     page= ${result.page} ,
                     type=${pageRequestDTO.type} ,
                     keyword = ${pageRequestDTO.keyword})}">
@@ -73,18 +73,18 @@
         <ul class="pagination h-100 justify-content-center align-items-center">
 
             <li class="page-item" th:if="${result.prev}">
-                <a class="page-link" th:href="@{/com/example/sample/board/list(page= ${result.start -1})}" tabindex="-1">Previous</a>
+                <a class="page-link" th:href="@{/board/list(page= ${result.start -1})}" tabindex="-1">Previous</a>
             </li>
 
             <li th:class=" 'page=item' + ${result.page == page?'active':''}"
                 th:each="page: ${result.pageList}">
-                <a class="page-link" th:href="@{/com/example/sample/board/list(page= ${page})}">
+                <a class="page-link" th:href="@{/board/list(page= ${page})}">
                     [[${page}]]
                 </a>
             </li>
 
             <li class="page-item" th:if="${result.next}">
-                <a class="page-link" th:href="@{/com/example/sample/board/list(page= ${result.end + 1})}">Next</a>
+                <a class="page-link" th:href="@{/board/list(page= ${result.end + 1})}">Next</a>
             </li>
 
         </ul> <!-- 태그 끝 -->

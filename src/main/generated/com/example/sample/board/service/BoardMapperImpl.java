@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-08-15T04:17:54+0900",
+    date = "2023-07-25T08:10:07+0900",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
 )
 @Component
 public class BoardMapperImpl implements BoardMapper {
 
     @Override
-    public Board dtoToEntity(BoardDTO dto) {
+    public Board dtoToEntity2(BoardDTO dto) {
         if ( dto == null ) {
             return null;
         }
@@ -30,7 +30,7 @@ public class BoardMapperImpl implements BoardMapper {
     }
 
     @Override
-    public BoardDTO entityToDto(Board entity) {
+    public BoardDTO entityToDto2(Board entity) {
         if ( entity == null ) {
             return null;
         }
