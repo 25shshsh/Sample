@@ -1,9 +1,7 @@
-package com.example.sample.entity;
+package com.example.sample.member.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.sample.member.entity.ClubMember;
-import com.example.sample.member.entity.ClubMemberRole;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -18,11 +16,11 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QClubMember extends EntityPathBase<ClubMember> {
 
-    private static final long serialVersionUID = 826368392L;
+    private static final long serialVersionUID = -1276011654L;
 
     public static final QClubMember clubMember = new QClubMember("clubMember");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.sample.base_entity.QBaseEntity _super = new com.example.sample.base_entity.QBaseEntity(this);
 
     public final StringPath email = createString("email");
 
