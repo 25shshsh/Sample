@@ -2,6 +2,8 @@ package com.example.sample.member.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.example.sample.member.entity.ClubMember;
+import com.example.sample.member.entity.ClubMemberRole;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;

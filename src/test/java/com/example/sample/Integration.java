@@ -2,7 +2,6 @@ package com.example.sample;
 
 import com.example.sample.board.dto.BoardDTO;
 import com.example.sample.board.entity.Board;
-import com.example.sample.board.service.BoardMapper;
 import com.example.sample.member.entity.ClubMember;
 import com.example.sample.member.entity.ClubMemberRole;
 import com.example.sample.member.repository.ClubMemberRepository;
@@ -11,9 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -26,8 +26,7 @@ public class Integration {
 
     @Autowired
     public Integration(ClubMemberRepository clubMemberRepository,
-                       PasswordEncoder passwordEncoder,
-                       BoardService boardService) {
+                       PasswordEncoder passwordEncoder, BoardService boardService) {
         this.clubMemberRepository = clubMemberRepository;
         this.passwordEncoder = passwordEncoder;
         this.boardService = boardService;
@@ -36,8 +35,7 @@ public class Integration {
 
     @Test
     @Transactional
-    //@Rollback(value = false)
-    @Commit
+    @Rollback(value = false)
     public void boardMemberTest() {
 
         IntStream.rangeClosed(1,10).forEach(i -> {
@@ -50,19 +48,19 @@ public class Integration {
 
             clubMember.addMemberRole(ClubMemberRole.USER);
 
-            if (i > 5) {
+            if (i > 80) {
                 clubMember.addMemberRole(ClubMemberRole.MANAGER);
             }
-            if (i > 8) {
+            if (i > 90) {
                 clubMember.addMemberRole(ClubMemberRole.ADMIN);
             }
             clubMemberRepository.save(clubMember);
         });
 
         // db에서 가져온 특정 계정의 권한 확인
-        ClubMember clubMember = clubMemberRepository.findByEmail("user9@sh.sh", false)
-                .orElseThrow( () -> new IllegalArgumentException("") );
+        Optional<ClubMember> result = clubMemberRepository.findByEmail("user9@sh.sh", false);
 
+        ClubMember clubMember = result.get();
         System.out.println("불러온 계정의 아이디 " + clubMember);
         System.out.println("불러온 계정의 권한 : " + clubMember.getRoleSet()); // [ADMIN, MANAGER, USER]
 
@@ -78,15 +76,11 @@ public class Integration {
                     .content("content..." + i)
                     .writer(clubMemberRepository.getReferenceById("user"+( (int)(Math.random() * 10) + 1)+"@sh.sh"))
                     .build();
-            // 수동매핑
-            BoardDTO boardDTO = BoardDTO.builder()
-                    .title(board.getTitle())
-                    .content(board.getContent())
-                    .writer(board.getWriter())
-                    .build();
-            boardService.register(boardDTO);
 
+            BoardDTO boardDTO = boardService.entityToDto(board);
+            boardService.register(boardDTO);
         });
+
 
 
     }

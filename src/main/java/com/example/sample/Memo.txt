@@ -17,9 +17,6 @@
 <!-- 현재 로그인 된 사용자와 게시글 작성자가 같을 경우에만 수정버튼이 보이게하려면 -->
 <div th:if="${dto.writer.email == #authentication.principal.username}">
 
-// #8 Optional 사용
-#12 이슈12 메서드 추상화 https://github.com/25shshsh/Sample/issues/12
-// ++ mapstruct라이브러리로 대체하자. (지금은 2가지 기능 동시)
 
-8/15 매핑을 수동으로 해서 mapstruct 의존을 제거할 수 있겠지만 코드의 재사용성과 유지보수를 생각하자.
-(테스트는 1개라서 인터페이스 주입시키기 좀 그래서 수동매핑함)
+#12 이슈12 메서드 추상화 https://github.com/25shshsh/Sample/issues/12
+#16 패키지 구조 정리. https://github.com/25shshsh/Sample/issues/16
