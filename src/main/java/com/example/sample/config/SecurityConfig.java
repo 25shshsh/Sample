@@ -5,8 +5,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -36,21 +40,26 @@ public class SecurityConfig {
                 .anyRequest().permitAll()// 이외 페이지 모두 허가.
                 .and().formLogin()// 인가 / 인증 문제시 로그인 화면을 보여주는 기능 별도의 기능을 지정하려면?
                 .and().logout().logoutSuccessUrl("/");
-
         //http.logout(); // logout페이지 설정 없으면 기본제공페이지, /logout 으로이동하면 뜸
-
         // 소셜로그인, oauth.properties
-       // http.oauth2Login().successHandler(successHandler());
+        // http.oauth2Login().successHandler(successHandler());
+
+        // AnonymousAuthenticationToken 설정 (익명 토큰 설정)
+        String key = "anonymousUser"; // 아무 값을 지정해도 상관없음, 여기서는 단순 문자열 "anonymousUser"를 사용.
+        Authentication anonymousAuth = new AnonymousAuthenticationToken(key, "anonymousUser",
+                AuthorityUtils.createAuthorityList("ANONYMOUS"));
+        // SecurityContextHolder에 설정
+        SecurityContextHolder.getContext().setAuthentication(anonymousAuth);
+
 
         return http.build();
     }
-
-
-
 
     @Bean // AuthenticationSuccessHandler의 구현체를 주입받아서 쓰는데 문제 없으려나.
     public ClubLoginSuccessHandler successHandler() {
         return new ClubLoginSuccessHandler();
     }
+
+
 
 }

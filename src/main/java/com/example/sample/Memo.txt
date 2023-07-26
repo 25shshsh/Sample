@@ -17,6 +17,5 @@
 <!-- 현재 로그인 된 사용자와 게시글 작성자가 같을 경우에만 수정버튼이 보이게하려면 -->
 <div th:if="${dto.writer.email == #authentication.principal.username}">
 
-
+#8 Optional 사용
 #12 이슈12 메서드 추상화 https://github.com/25shshsh/Sample/issues/12
-#16 패키지 구조 정리. https://github.com/25shshsh/Sample/issues/16
