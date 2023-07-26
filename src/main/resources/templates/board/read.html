@@ -35,12 +35,18 @@
                    th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
         </div>
 
-        <!-- 현재 로그인 된 사용자와 게시글 작성자가 같을 경우에만 수정버튼이 보이게 -->
-        <div th:if="${dto.writer.email == #authentication.principal.username}">
-        <a th:href="@{/board/modify(boardNo = ${dto.boardNo}, page=${requestDTO.page},
-        type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
-            <button type="button" class="btn btn-primary">Modify</button></a>
+
+        <div>
+            <!-- 익명사용자 ANONYMOUS는 SecurityConfig에 설정해놓음 -->
+        <div sec:authorize="hasRole('ANONYMOUS')"></div>
+            <!-- 현재 로그인 된 사용자와 게시글 작성자가 같을 경우에만 수정버튼이 보이게 -->
+            <div sec:authorize="!hasRole('ANONYMOUS')" th:if="${#authentication.principal.username == dto.writer.email}">
+                <a th:href="@{/board/modify(boardNo = ${dto.boardNo}, page=${requestDTO.page},
+                type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
+                    <button type="button" class="btn btn-primary">Modify</button></a>
+            </div>
         </div>
+
 
         <div>
             <br>
