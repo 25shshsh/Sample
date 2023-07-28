@@ -12,8 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -58,9 +56,9 @@ public class Integration {
         });
 
         // db에서 가져온 특정 계정의 권한 확인
-        Optional<ClubMember> result = clubMemberRepository.findByEmail("user9@sh.sh", false);
+        ClubMember clubMember = clubMemberRepository.findByEmail("user9@sh.sh", false)
+                .orElseThrow( () -> new IllegalArgumentException("") );
 
-        ClubMember clubMember = result.get();
         System.out.println("불러온 계정의 아이디 " + clubMember);
         System.out.println("불러온 계정의 권한 : " + clubMember.getRoleSet()); // [ADMIN, MANAGER, USER]
 

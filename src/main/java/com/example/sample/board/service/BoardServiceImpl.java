@@ -45,9 +45,14 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public BoardDTO read(Long boardNo) {
-        Optional<Board> result = boardRepository.findById(boardNo);
+/*        Optional<Board> result = boardRepository.findById(boardNo);
 
-        return result.isPresent()? entityToDto(result.get()): null;
+        return result.isPresent()? entityToDto(result.get()): null;*/
+
+        Board result = boardRepository.findById(boardNo)
+                .orElseThrow( () -> new IllegalArgumentException("") );
+
+        return entityToDto(result);
     }
 
     @Override
@@ -70,7 +75,7 @@ public class BoardServiceImpl implements BoardService{
         }
     }
 
-    @Override // 164p
+    @Override
     public PageResultDTO<BoardDTO, Board> getList(PageRequestDTO requestDTO) {
 
         Pageable pageable = requestDTO.getPageable(Sort.by("boardNo").descending());
@@ -105,13 +110,13 @@ public class BoardServiceImpl implements BoardService{
         // 검색 조건을 작성하기
         BooleanBuilder conditionBuilder = new BooleanBuilder();
 
-        if(type.contains("t")){
+        if(type.contains("title")){
             conditionBuilder.or(qBoard.title.contains(keyword));
         }
-        if(type.contains("c")){
+        if(type.contains("content")){
             conditionBuilder.or(qBoard.content.contains(keyword));
         }
-        if(type.contains("w")){
+        if(type.contains("writer")){
             conditionBuilder.or(qBoard.writer.email.contains(keyword));
         }
         // 만약 list.html에서 tcw라면 제목,내용,작성자 모두 포함이지
