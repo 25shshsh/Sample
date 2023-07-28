@@ -19,3 +19,4 @@
 
 #8 Optional 사용
 #12 이슈12 메서드 추상화 https://github.com/25shshsh/Sample/issues/12
+++ mapstruct라이브러리로 대체하자. (지금은 2가지 기능 동시)

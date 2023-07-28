@@ -63,13 +63,14 @@ public class BoardServiceTests {
     }
 
     @Test
+    @Transactional
     @DisplayName("test 서치") //impl, list.html
     public void testSearch(){
 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
                 .page(31)
                 .size(10)
-                .type("tc")   //검색 조건 t, c, w, tc, tcw ..
+                .type("titlecontent")   //검색 조건 t, c, w, tc, tcw ..
                 .keyword("title")  // 검색 키워드
                 .build();
 
