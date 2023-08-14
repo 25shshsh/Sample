@@ -160,11 +160,11 @@ public class BoardRepositoryTests {
                 .orElseThrow( () -> new IllegalArgumentException("") ); // entity
 
         System.out.println(board.getRegDate());
-        BoardDTO boardDTO = BoardMapper.INSTANCE.entityToDto2(board);
+        BoardDTO boardDTO = BoardMapper.INSTANCE.entityToDto(board);
 
         System.out.println(boardDTO); // dto
 
-        Board board2 = BoardMapper.INSTANCE.dtoToEntity2(boardDTO);
+        Board board2 = BoardMapper.INSTANCE.dtoToEntity(boardDTO);
 
         System.out.println(board2); // entity, 저장전이라 regdate, moddate 정보없음
 

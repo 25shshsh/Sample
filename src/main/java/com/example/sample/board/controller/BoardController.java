@@ -1,6 +1,7 @@
 package com.example.sample.board.controller;
 
 import com.example.sample.board.dto.BoardDTO;
+import com.example.sample.board.service.BoardMapper;
 import com.example.sample.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +21,7 @@ import com.example.sample.board.dto.PageRequestDTO;
 public class BoardController {
 
     private final BoardService service; // 인터페이스에 필요한 생성자 자동 주입, final 선언 필요
+    private final BoardMapper boardMapper;
 
     @GetMapping({""}) // 리퀘스트매핑 자동이동.
     public String index() {
