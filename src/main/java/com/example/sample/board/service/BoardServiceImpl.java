@@ -45,6 +45,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public BoardDTO read(Long boardNo) {
+
 /*        Optional<Board> result = boardRepository.findById(boardNo);
 
         return result.isPresent()? entityToDto(result.get()): null;*/
