@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 public interface BoardMapper {
     BoardMapper INSTANCE = Mappers.getMapper(BoardMapper.class);
 
-    Board dtoToEntity2(BoardDTO dto);
+    Board dtoToEntity(BoardDTO dto);
 
-    BoardDTO entityToDto2(Board entity);
+    BoardDTO entityToDto(Board entity);
 }

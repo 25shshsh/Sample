@@ -24,7 +24,8 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
 
-    private final BoardRepository boardRepository; // final 붙이면 생성될 때 한번만 호출된다. 호출되는 객체의 수정을 방지한다.
+    private final BoardRepository boardRepository; // 생성자주입.
+    private final BoardMapper boardMapper;
 
     @Override
     public Long register(BoardDTO dto) {
@@ -34,7 +35,7 @@ public class BoardServiceImpl implements BoardService{
 
 
         log.info("dtoToEntity-----------");
-        Board entity = dtoToEntity(dto);
+        Board entity = boardMapper.INSTANCE.dtoToEntity(dto);
         log.info(entity);
 
         boardRepository.save(entity);
@@ -51,9 +52,9 @@ public class BoardServiceImpl implements BoardService{
         return result.isPresent()? entityToDto(result.get()): null;*/
 
         Board result = boardRepository.findById(boardNo)
-                .orElseThrow( () -> new IllegalArgumentException("") );
+                .orElseThrow( () -> new IllegalArgumentException(""));
 
-        return entityToDto(result);
+        return boardMapper.INSTANCE.entityToDto(result);
     }
 
     @Override
@@ -85,7 +86,7 @@ public class BoardServiceImpl implements BoardService{
 
         Page<Board> result = boardRepository.findAll(booleanBuilder, pageable); // Querydsl 사용
 
-        Function<Board, BoardDTO> fn = (entity -> entityToDto(entity)); // static class에 Function정리함.
+        Function<Board, BoardDTO> fn = (entity -> boardMapper.INSTANCE.entityToDto(entity)); // static class에 Function정리함.
 
         return new PageResultDTO<>(result, fn);
     }
