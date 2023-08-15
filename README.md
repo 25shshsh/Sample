@@ -13,6 +13,8 @@
 
 ### 사용 방법
 
+chmod +x gradlew
+
 ./gradlew :test --tests "Integration"
 
 ./gradlew bootRun
