@@ -12,10 +12,9 @@
 * GitHub (https://github.com/25shshsh/Sample)
 
 ### 사용 방법
-test/Integration클래스 실행(회원+게시글 데이터)
 
-com.example.sample.SampleApplication 실행
+./gradlew :test --tests "Integration"
 
-모든 회원의 비밀번호는 1111
+./gradlew bootRun
 
-더 뭘 쓸께 없다.
+(모든 회원의 비밀번호는 1111 입니다.)
