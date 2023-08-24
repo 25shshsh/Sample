@@ -11,11 +11,4 @@
 * MariaDB
 * GitHub (https://github.com/25shshsh/Sample)
 
-### 사용 방법
-test/Integration클래스 실행(회원+게시글 데이터)
 
-SampleApplication 실행
-
-모든 회원의 비밀번호는 1111
-
-더 뭘 쓸께 없다.
