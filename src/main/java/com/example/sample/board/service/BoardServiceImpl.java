@@ -121,7 +121,7 @@ public class BoardServiceImpl implements BoardService{
         if(type.contains("writer")){
             conditionBuilder.or(qBoard.writer.email.contains(keyword));
         }
-        // 만약 list.html에서 tcw라면 제목,내용,작성자 모두 포함이지
+        // 만약 list.html에서 tcw라면 제목,내용,작성자 모두 포함
 
 
         //모든 조건 통합

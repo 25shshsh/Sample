@@ -59,7 +59,7 @@ public class BoardController {
 
         BoardDTO dto = service.read(boardNo); // entity의 boardNo로 entity를 꺼내서 dto로 바꾼것을 dto에 담아준다.
 
-        model.addAttribute("dto", dto); // entity -> dto가 된 것을 모델에 담아서 전송!
+        model.addAttribute("dto", dto); // entity -> dto가 된 것을 모델에 담아서 전송
 
     }
 
