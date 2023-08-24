@@ -20,7 +20,6 @@ Enum클래스로 접근권한을 명시하고, 타임리프의 sec:authorize의 
 
 ### 사용 방법
 
-chmod +x gradlew
 
 ./gradlew :test --tests "Integration"
 
