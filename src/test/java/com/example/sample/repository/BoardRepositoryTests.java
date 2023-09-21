@@ -77,9 +77,9 @@ public class BoardRepositoryTests {
     @Test
     @DisplayName("단일 항목 검색 테스트")
     public void testQuery1() {
-        // springframework Pageable로 불러와라..
-        // BooleanExpression은 member.age.eq(xx) 같은 경우처럼 표현식의 결과로 반환되는 값입니다.
-        // BooleanBuilder는 이런 표현식을 모아서 사용할 수 있도록 도와주는 도구로 이해하시면 됩니다.
+        // springframework Pageable로 불러와야.
+        // BooleanExpression은 member.age.eq(xx) 같은 경우처럼 표현식의 결과로 반환되는 값
+        // BooleanBuilder는 이런 표현식을 모아서 사용할 수 있도록 도와주는 도구로 이해
         Pageable pageable = PageRequest.of(0, 10, Sort.by("boardNo").descending());
 
         QBoard qBoard = QBoard.board; //1 q도메인 클래스 생성
